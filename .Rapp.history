@@ -1,0 +1,627 @@
+is.null(phyOrder)
+phyOrder
+is.null(phyOrder) || phyOrder != "cladewise"
+yy <- numeric(Ntip + Nnode)
+yy
+Ntip
+Nnode
+TIPS <- x$edge[x$edge[, 2] <= Ntip, 2]
+TIPS
+yy[TIPS] <- 1:Ntip
+yy
+z <- reorder(x, order = "postorder")
+is.null(node.pos)
+node.pos <- if (type == "cladogram" && !use.edge.length) #
+                2
+node.pos
+node.pos <- 1
+yy <- .nodeHeight(Ntip, Nnode, z$edge, Nedge, yy)
+yy
+xx <- .nodeDepth(Ntip, Nnode, z$edge, Nedge, #
+                  node.depth) - 1
+xx <- .nodeDepthEdgelength(Ntip, Nnode, z$edge, Nedge, #
+                z$edge.length)
+xx
+x = tt#
+#
+Ntip <- length(x$tip.label)#
+Nnode <- x$Nnode#
+edge = x$edge#
+#xx#
+#yy#
+horizontal = "rightwards"#
+edge.color = "black"#
+edge.width = 1#
+edge.lty = 1#
+    .nodeHeight <- function(Ntip, Nnode, edge, Nedge, yy) .C(node_height, #
+        as.integer(Ntip), as.integer(Nnode), as.integer(edge[, #
+            1]), as.integer(edge[, 2]), as.integer(Nedge), as.double(yy))[[6]]#
+    .nodeDepth <- function(Ntip, Nnode, edge, Nedge, node.depth) .C(node_depth, #
+        as.integer(Ntip), as.integer(Nnode), as.integer(edge[, #
+            1]), as.integer(edge[, 2]), as.integer(Nedge), double(Ntip + #
+            Nnode), as.integer(node.depth))[[6]]#
+    .nodeDepthEdgelength <- function(Ntip, Nnode, edge, Nedge, #
+        edge.length) .C(node_depth_edgelength, as.integer(Ntip), #
+        as.integer(Nnode), as.integer(edge[, 1]), as.integer(edge[, #
+            2]), as.integer(Nedge), as.double(edge.length), double(Ntip + #
+            Nnode))[[7]]#
+    Nedge <- dim(x$edge)[1]#
+    ROOT <- Ntip + 1#
+    xe <- x$edge#
+        yy <- numeric(Ntip + Nnode)#
+        TIPS <- x$edge[x$edge[, 2] <= Ntip, 2]#
+        yy[TIPS] <- 1:Ntip#
+#
+    z <- reorder(x, order = "postorder")#
+    yy <- .nodeHeight(Ntip, Nnode, z$edge, Nedge, yy)#
+	xx <- .nodeDepthEdgelength(Ntip, Nnode, z$edge, Nedge, #
+                z$edge.length)
+nodes <- (Ntip + 1):(Ntip + Nnode)
+nodes
+horizontal
+!horizontal
+x0v <- xx[nodes]
+y0v <- y1v <- numeric(Nnode)
+NodeInEdge1 <- vector("list", Nnode)
+e1 <- edge[, 1]
+for (i in seq_along(e1)) {#
+        j <- e1[i] - Ntip#
+        NodeInEdge1[[j]] <- c(NodeInEdge1[[j]], i)#
+    }
+for (i in 1:Nnode) {#
+        j <- NodeInEdge1[[i]]#
+        tmp <- range(yy[edge[j, 2]])#
+        y0v[i] <- tmp[1]#
+        y1v[i] <- tmp[2]#
+    }#
+    x0h <- xx[edge[, 1]]#
+    x1h <- xx[edge[, 2]]#
+    y0h <- yy[edge[, 2]]#
+    nc <- length(edge.color)#
+    nw <- length(edge.width)#
+    nl <- length(edge.lty)#
+    if (nc + nw + nl == 3) {#
+        color.v <- edge.color#
+        width.v <- edge.width#
+        lty.v <- edge.lty#
+    }
+nc + nw + nl == 3
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+nodes <- (Ntip + 1):(Ntip + Nnode)#
+    x0v <- xx[nodes]#
+    y0v <- y1v <- numeric(Nnode)#
+    NodeInEdge1 <- vector("list", Nnode)#
+    e1 <- edge[, 1]#
+    for (i in seq_along(e1)) {#
+        j <- e1[i] - Ntip#
+        NodeInEdge1[[j]] <- c(NodeInEdge1[[j]], i)#
+    }#
+    for (i in 1:Nnode) {#
+        j <- NodeInEdge1[[i]]#
+        tmp <- range(yy[edge[j, 2]])#
+        y0v[i] <- tmp[1]#
+        y1v[i] <- tmp[2]#
+    }#
+    x0h <- xx[edge[, 1]]#
+    x1h <- xx[edge[, 2]]#
+    y0h <- yy[edge[, 2]]#
+    nc <- length(edge.color)#
+    nw <- length(edge.width)#
+    nl <- length(edge.lty)#
+    if (nc + nw + nl == 3) {#
+        color.v <- edge.color#
+        width.v <- edge.width#
+        lty.v <- edge.lty#
+    }
+nc + nw + nl == 3
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+plot.default(0, type = "n", xlim = x.lim, ylim = y.lim, xlab = "", #
+        ylab = "", axes = FALSE, asp = asp, ...)
+plot.default(0, type = "n", xlim = x.lim, ylim = y.lim, xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+plot.default(0, type = "n", #xlim = x.lim, ylim = y.lim, #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+x0h
+y0h
+locator()
+x1h
+max(x1h
+)
+min(x0h)
+plot.default(0, type = "n", xlim = c(0,1), ylim = c(0,10), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+plot.default(0, type = "n", xlim = c(0,1), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+x0v
+y0h
+?segments
+length(x0v)
+length(y0v)
+length(y1v)
+length(x1v)
+length(x1h)
+x1h
+locator()
+y1v
+y0v
+x0v
+x-h
+x0h
+mean(x0h, x1h)
+x1h
+rbind(x0h, x1h)
+apply(rbind(x0h, x1h), 1, mean)
+apply(rbind(x0h, x1h), 2, mean)
+xwrite <- apply(rbind(x0h, x1h), 2, mean)
+i.primeW
+text(x = xwrite, y = y0v, i.primeW)
+y1v
+text(x = xwrite, y = c(y0v, y1v), i.primeW)
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+text(x = xwrite, y = c(y0v, y1v), i.primeW)
+A
+AFd
+AFw
+plot(tree)
+AFw/rowsum(AFw)
+AFw/rowSums(AFw)
+xtree
+x0h
+y0h
+x1h
+y0h
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+        segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)#
+#
+  segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+  segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)#
+#
+  segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)
+segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)
+segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)
+xwrite <- apply(rbind(x0h, x1h), 2, mean)
+xwrite <- apply(rbind(x0h, x1h), 2, mean)#
+text(x = xwrite, y = c(y0h), i.primeW)
+text(x = xwrite, y = c(y0h)+0.1, i.primeW)
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)#
+#
+  segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+#
+xwrite <- apply(rbind(x0h, x1h), 2, mean)#
+text(x = xwrite, y = c(y0h)+0.1, i.primeW)    #
+#
+  segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+x$edge
+text(x = xwrite, y = c(y0h)+0.1, i.primeW[x$edge[,2]])
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)#
+#
+  segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+#
+xwrite <- apply(rbind(x0h, x1h), 2, mean)#
+text(x = xwrite, y = c(y0h)+0.1, i.primeW[x$edge[,2]])    #
+#
+segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+1.25/2
+i.primeW
+A
+xtree$h1
+xtree
+xtree$H1
+tree$edge
+tt$edge
+tt$edge[,2]
+reorder(tt$edge[,2])
+order(tt$edge[,2])
+text(x = xwrite, y = c(y0h)+0.1, i.primeW[order(x$edge[,2]]))
+plot.default(0, type = "n", xlim = c(0,0.5), ylim = c(0,8), #
+xlab = "", #
+        ylab = "", axes = FALSE, asp = NA)#
+#
+  segments(x0h, y0h, x1h, y0h, col = edge.color, lwd = edge.width, #
+            lty = edge.lty)#
+#
+xwrite <- apply(rbind(x0h, x1h), 2, mean)#
+text(x = xwrite, y = c(y0h)+0.1, i.primeW[order(x$edge[,2])])
+segments(x0v, y0v, x0v, y1v, col = color.v, lwd = width.v, #
+            lty = lty.v)
+AFw[1,]
+A
+A[1,]
+plot(tree)
+sum(A[1,])
+1/8
+sum(AF2)
+sum(AFw[1,])
+i.primeW
+xtree
+Xtree
+h=tree
+h
+H1 <- matrix(0, length(h$order), 2 * length(h$order) - 2)
+H1
+l <- vector("numeric", 2 * length(h$order) - 2)
+l
+length(h$order)
+h$order
+h$merge
+i=1
+h$merge[i, 1]
+l[2 * i - 1] <- h$height[order(h$height)[i]]
+2 * i
+h$height
+[order(h$height)[i]
+order(h$height)[i]
+order(h$height)
+i
+order(h$height)[i]
+h$height[order(h$height)[i]]
+H1[ - h$merge[i, 1], 2 * i - 1] <- 1
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-26-01.xls", sheet = 5)
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)
+head(d)
+names(d)
+d <- d[,c(1:4,14:21)]
+head(d)
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+names(d)#
+d <- d[,c(1:4,14:21)]
+head(d)
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")
+head(d)
+d[d$cuttings < 1,]
+summary(d)
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")
+d[d$cuttings < 1,]
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")
+d[d$cuttings < 1,]
+d[is.na(d$cuttings),]
+d[is.na(d$cuttings),]
+is.na(d$cuttings)
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")
+is.na(d$cuttings)
+d[is.na(d$cuttings),]
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")
+d[is.na(d$cuttings),]
+summary(d)
+summary(d$cuttings)
+is.na(d$cuttings)
+d$cuttings[1]
+d$cuttings[218]
+d$cuttings[219]
+d$cuttings[217]
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")
+d$cuttings[217]
+d$cuttings[218]
+d[is.na(d$cuttings),]
+d[is.na(d$cuttings),"Individual]
+d[is.na(d$cuttings),"Individual]
+d[is.na(d$cuttings),"Individual"]
+data.frame(d[is.na(d$cuttings),"Individual"])
+d <- d[!is.na(d$cuttings),])
+d <- d[!is.na(d$cuttings),]
+dim(D)
+dim(d)
+i = 1
+d[i,]
+paste(d[i,"Individual"], 1:(d[i,"cuttings"])-2)
+paste(d[i,"Individual"], 1:(d[i,"cuttings"]-2))
+d[i,"cuttings"]
+d[i,"cuttings"]-2
+paste(d[i,"Individual"], 1:(d[i,"cuttings"]-2))
+paste(d[i,"Individual"], format(1:(d[i,"cuttings"]-2), width = 2), sep = "_")
+paste(d[i,"Individual"], format(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")
+?format
+paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")
+xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")
+dx <- vector()#
+#
+for(i in 1:nrow(d) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	)
+dx <- vector()#
+#
+for(i in 1:nrow(d) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	}
+dx <- vector()#
+#
+for(i in 1:nrow(d) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	}
+dx <- vector()#
+#
+for(i in 1:nrow(d) ) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	}
+dx
+dx <- data.frame(dx)
+head(dx)
+dx$site <- substr(dx, 10, 11)
+dx$site
+dx$site <- substr(dx[,1], 10, 11)
+dx$site
+dx <- data.frame(dx)#
+#
+dx$site <- substr(dx[,1], 10, 11)
+head(dx)
+dx$sp <- substr(dx[,1], 1, 6)#
+dx$ind <- substr(dx[,1], 7, 8)
+head(dx)
+dx$twig <- substr(dx[,1], 13, 14)
+dx <- vector()#
+#
+for(i in 1:nrow(d) ) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	}#
+dx <- data.frame(dx)#
+#
+dx$site <- substr(dx[,1], 10, 11)#
+dx$sp <- substr(dx[,1], 1, 6)#
+dx$rep <- substr(dx[,1], 7, 8)#
+dx$ind <- substr(dx[,1], 1, 8)#
+dx$twig <- substr(dx[,1], 13, 14)
+head(dx)
+names(dx)[1] = "id"
+head(dx)
+unique(dx[dx$twig > 6,"sp"])
+unique(dx[as.numeric(dx$twig > 6),"sp"])
+unique(dx[as.numeric(dx$twig) > 6,"sp"])
+dx[1:50,]
+dx[as.numeric(dx$twig) > 6,]
+dx[is.na(as.numeric(dx$twig) > 6),]
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")#
+#
+# Find out if we took cuttings of these replacment Aromel and Lyolig; first three definitely did not do. For now eliminate all of these#
+#  data.frame(d[is.na(d$cuttings),"Individual"])#
+# 1                        SPIALB04_SH#
+# 2                        LONCAN02_SH#
+# 3                        SPIALB02_SH#
+# 4                        AROMEL02_HF#
+# 5                        AROMEL03_HF#
+# 6                        LYOLIG04_HF#
+# 7                        AROMEL05_HF#
+#
+d <- d[!is.na(d$cuttings),] # 275 individuals left#
+#
+# Make a new dataframe with  each twig#
+#
+dx <- vector()#
+#
+for(i in 1:nrow(d) ) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	}#
+dx <- data.frame(dx)#
+#
+dx$site <- substr(dx[,1], 10, 11)#
+dx$sp <- substr(dx[,1], 1, 6)#
+dx$rep <- substr(dx[,1], 7, 8)#
+dx$ind <- substr(dx[,1], 1, 8)#
+dx$twig <- substr(dx[,1], 13, 14)#
+#
+names(dx)[1] = "id"#
+#
+# Assign treatments. For species which have chilling
+dx[is.na(as.numeric(dx$twig) > 6),]
+# Creating maps and assigning treatments for Budburst experiment 2015#
+#
+# Goal: test control of daylength, temperature, and chilling on timing of budburst for woody species of NE North America#
+#
+# This script will assign treatments and chamber locations for each cutting.#
+#
+# Latest: 2015-01-29#
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/")#
+library(gdata) # for read.xls#
+#
+d <- read.xls("Budburst Datasheet 2015-01-29.xlsx", sheet = 5)#
+d <- d[,c(1:4,14:21)]#
+#
+names(d) <- c("Individual","Site","Lat","Long","collected","cuttings","height","dbh1","dbh2","dbh3","dbh4","notes")#
+#
+# Find out if we took cuttings of these replacment Aromel and Lyolig; first three definitely did not do. For now eliminate all of these#
+#  data.frame(d[is.na(d$cuttings),"Individual"])#
+# 1                        SPIALB04_SH#
+# 2                        LONCAN02_SH#
+# 3                        SPIALB02_SH#
+# 4                        AROMEL02_HF#
+# 5                        AROMEL03_HF#
+# 6                        LYOLIG04_HF#
+# 7                        AROMEL05_HF#
+#
+d <- d[!is.na(d$cuttings),] # 275 individuals left#
+#
+# Make a new dataframe with  each twig#
+#
+dx <- vector()#
+#
+for(i in 1:nrow(d) ) { # i = 1#
+	xx <- paste(d[i,"Individual"], formatC(1:(d[i,"cuttings"]-2), width = 2, flag = "0"), sep = "_")#
+	dx <- c(dx, xx)#
+	}#
+dx <- data.frame(dx)#
+#
+dx$site <- substr(dx[,1], 10, 11)#
+dx$sp <- substr(dx[,1], 1, 6)#
+dx$rep <- substr(dx[,1], 7, 8)#
+dx$ind <- substr(dx[,1], 1, 8)#
+dx$twig <- substr(dx[,1], 13, 14)#
+#
+names(dx)[1] = "id"#
+#
+# Assign treatments. For species which have chilling
+dx[is.na(as.numeric(dx$twig) > 6),]
+unique(dx[as.numeric(dx$twig) > 6,"sp"])
+data.frame(unique(dx[as.numeric(dx$twig) > 6,"sp"]))
+chilsp <- unique(dx[as.numeric(dx$twig) > 6,"sp"])
+chilsp
+length(chilsp)
+unique(,"sp"]
+unique(d[,"sp"])
+unique(dx[,"sp"])
+chillsp <- unique(dx[as.numeric(dx$twig) > 6,"sp"])#
+allsp <- unique(dx[,"sp"])
+allsp %in% chillsp
+allsp[!allsp %in% chillsp]
+nonchillsp <- allsp[!allsp %in% chillsp]
+nonchillsp

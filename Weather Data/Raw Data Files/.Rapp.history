@@ -1,0 +1,77 @@
+setwd("~/Dropbox/Work/Harvard/Budburst Experiment/Weather Data/Raw Data Files")
+setwd("Budburst Experiment/Weather Data/Raw Data Files")
+setwd("~/Budburst Experiment/Weather Data/Raw Data Files")
+setwd("~/Dropbox/Budburst Experiment/Weather Data/Raw Data Files")
+hf <- read.csv("Harvard Forest (Fisher) Raw Weather Data.csv")
+head(hf)
+hf
+hf[1,1]
+hf[,1]
+hf[1,]
+hf <- hf[-1,]
+hf[1,1]
+names(hf)
+grep("me", c("home", "homie"))
+grep("me", c("home", "homie", "metoo"))
+names(hf)
+testpattern<- c("home", "homie", "metoo")
+testpattern
+grep("me", testpattern)
+testpattern[grep("me", testpattern)]
+names(hf)
+todelete <- grep("^F", names(hf)) # Find columns which have a name of F (use ^ to make sure this is the first character in the column name).
+todelete
+hf <- hf[,-todelete]
+names(hf)
+head(hf)
+tail(hf)
+summary(hf)
+i=1
+hf[,i]
+i=2
+hf[,i]
+as.numeric(hf[,i])
+as.character(hf[,i])
+as.numeric(as.character(hf[,i]))
+ncol(hf)
+2:ncol(hf)
+1:3
+1:15
+2:15
+for(i in 2:ncol(hf)){ #
+	hf[,i] <- as.numeric(as.character(hf[,i])) #
+	}
+head(hf)
+summary(hf)
+hf[,i]
+as.character(hf[,i])
+as.numeric(as.character(hf[,i]))
+hf[,1]
+hf[,1] <- as.character(hf[,1])
+hf[,1]
+hf2 <- read.csv("Harvard Forest (Shaler) Raw Weather Data.csv")
+hf2 <- hf2[-1,]
+head(hf2)
+todelete <- grep("^F", names(hf2))
+hf2 <- hf2[,-todelete]
+for(i in 2:ncol(hf2)){ hf2[,i] <- as.numeric(as.character(hf2[,i])) }#
+hf2[,1] <- as.character(hf2[,1])#
+summary(hf2)
+names(hf2)[3:4] <- c("AirTMax", "AirTMin")
+hfx <- merge(hf, hf2, all = T)
+head(hfx)
+dim(hfx)
+tail(hfx)
+hfx$month <- substr(hfx[,1], 6, 7) # take 6th and 7th values of the Date column.
+hfx[,1]
+hfx$month
+hfx[,1]
+hfx$month <- substr(hfx[,1], 6, 7) # take 6th and 7th values of the Date column.
+hf.summary <- as.data.frame(t(rbind(#
+tapply(hfx$AirTMax, hfx$month, mean, na.rm=T),#
+tapply(hfx$AirTMin, hfx$month, mean, na.rm=T),#
+tapply(hfx$ParT, hfx$month, mean, na.rm=T) # total PAR?#
+)))
+hf.summary
+colnames(hf.summary) <- c("tmax","tmin","part")
+hf.summary
